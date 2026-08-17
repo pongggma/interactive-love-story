@@ -113,4 +113,5 @@ export const SFX = {
 // 🖼️ BACKGROUND IMAGES
 // ========================================
 
-export const bg = (name) => `${BASE}images/${name}.jpg`
+export const bg = (name) =>
+  `${BASE}images/backgrounds/${name}.jpg`

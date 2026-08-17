@@ -11,11 +11,9 @@ const s = (speaker, text) => ({
   speaker,
   text,
 })
-
 const BASE = import.meta.env.BASE_URL
 
-const bg = (id) => `${BASE}images/${id}.jpg`
-
+const bg = (id) => `${BASE}images/backgrounds/${id}.jpg`
 export const ACTS = {
   1: {
     title: 'ຄົນຈາກອະດີດ',
