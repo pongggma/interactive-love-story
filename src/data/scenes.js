@@ -1,5 +1,11 @@
 // scenes.js
 
+const BASE = import.meta.env.BASE_URL
+
+// ========================================
+// 🎨 MOODS
+// ========================================
+
 export const MOODS = {
   rain: {
     label: 'ຄືນຝົນຕົກ',
@@ -65,27 +71,27 @@ export const MOODS = {
 
 export const TRACKS = {
   mainTheme: {
-    src: '/music/main-theme.mp3',
+    src: `${BASE}music/main-theme.mp3`,
     volume: 0.35,
   },
 
   nostalgic: {
-    src: '/music/nostalgic.mp3',
+    src: `${BASE}music/nostalgic.mp3`,
     volume: 0.30,
   },
 
   tension: {
-    src: '/music/tension.mp3',
+    src: `${BASE}music/tension.mp3`,
     volume: 0.30,
   },
 
   hope: {
-    src: '/music/hope.mp3',
+    src: `${BASE}music/hope.mp3`,
     volume: 0.35,
   },
 
   ending: {
-    src: '/music/ending.mp3',
+    src: `${BASE}music/ending.mp3`,
     volume: 0.30,
   },
 }
@@ -96,10 +102,10 @@ export const TRACKS = {
 // ========================================
 
 export const SFX = {
-  message: '/sounds/message.mp3',
-  phoneRing: '/sounds/phone-ring.mp3',
-  click: '/sounds/click.mp3',
-  rain: '/sounds/rain.mp3',
+  message: `${BASE}sounds/message.mp3`,
+  phoneRing: `${BASE}sounds/phone-ring.mp3`,
+  click: `${BASE}sounds/click.mp3`,
+  rain: `${BASE}sounds/rain.mp3`,
 }
 
 
@@ -107,4 +113,4 @@ export const SFX = {
 // 🖼️ BACKGROUND IMAGES
 // ========================================
 
-export const bg = (name) => `/images/${name}.jpg`
+export const bg = (name) => `${BASE}images/${name}.jpg`
