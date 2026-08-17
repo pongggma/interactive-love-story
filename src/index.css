@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Lao:wght@400;500;600;700&family=Noto+Sans+Lao:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+@import "tailwindcss";
+
+:root {
+  --bg: #0b0b0f;
+  --text: #f5f5f5;
+  --text-secondary: #999999;
+  --accent: #d8a7a7;
+  --border: rgba(245, 245, 245, 0.1);
+  --panel: rgba(255, 255, 255, 0.04);
+
+  --font-display: 'Noto Serif Lao', 'Noto Serif', serif;
+  --font-ui: 'Noto Sans Lao', 'Noto Sans', sans-serif;
+  --font-accent: 'Cormorant Garamond', 'Noto Serif Lao', serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: var(--accent);
+  color: #1a1010;
+}
+
+/* ---------- cinematic atmosphere layers ---------- */
+
+.film-grain {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain-shift 1.4s steps(4) infinite;
+}
+
+@keyframes grain-shift {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-2%, 1%); }
+  50% { transform: translate(1%, -2%); }
+  75% { transform: translate(-1%, -1%); }
+  100% { transform: translate(0, 0); }
+}
+
+.vignette {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 45%, transparent 35%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+.rain-layer {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0.35;
+}
+
+.rain-drop {
+  position: absolute;
+  top: -10%;
+  width: 1px;
+  height: 14%;
+  background: linear-gradient(to bottom, transparent, rgba(200, 210, 230, 0.55));
+  animation-name: rain-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes rain-fall {
+  0% { transform: translateY(-10%); }
+  100% { transform: translateY(120vh); }
+}
+
+.dust-layer {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0.5;
+}
+
+.dust-mote {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(216, 167, 167, 0.55), transparent 70%);
+  animation: dust-drift ease-in-out infinite;
+}
+
+@keyframes dust-drift {
+  0%, 100% { transform: translate(0, 0); opacity: 0.2; }
+  50% { transform: translate(8px, -14px); opacity: 0.6; }
+}
+
+/* presence glow — the story's signature element: a slow "breathing" light
+   standing in for the other person, since no character art ships here */
+.presence-glow {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  filter: blur(2px);
+  animation: breathe 5.5s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(0.92); opacity: 0.55; }
+  50% { transform: scale(1.05); opacity: 0.9; }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dialogue-line-enter {
+  animation: fade-in-up 0.5s ease both;
+}
+
+@keyframes scene-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.scene-fade-enter {
+  animation: scene-fade 0.7s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .film-grain, .rain-drop, .dust-mote, .presence-glow {
+    animation: none !important;
+  }
+  .dialogue-line-enter, .scene-fade-enter {
+    animation: none !important;
+  }
+}
