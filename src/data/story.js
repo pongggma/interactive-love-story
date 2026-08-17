@@ -12,11 +12,9 @@ const s = (speaker, text) => ({
   text,
 })
 
-const bg = (id) => `/images/backgrounds/${id}.jpg`
+const BASE = import.meta.env.BASE_URL
 
-// ============================================================
-// ACTS
-// ============================================================
+const bg = (id) => `${BASE}images/${id}.jpg`
 
 export const ACTS = {
   1: {
